@@ -1,0 +1,16 @@
+{
+  "name": "ai-search-companion",
+  "private": true,
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "dev": "pnpm --filter @ai-search-companion/extension dev",
+    "build": "pnpm --filter @ai-search-companion/extension build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}
+
