@@ -3,6 +3,9 @@
   "name": "Better AI Mode",
   "version": "0.1.0",
   "description": "Adds a custom AI answer card to Google Search results.",
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://www.google.com/search*"],
