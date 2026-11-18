@@ -1,0 +1,4 @@
+node_modules/
+apps/
+packages/
+native-host-manifest.json

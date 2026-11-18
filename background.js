@@ -1,5 +1,33 @@
 const STREAM_PORT_NAME = "better-ai-mode-search";
 const CHUNK_DELAY_MS = 90;
+const NATIVE_HOST = "com.better_ai_mode.auth";
+
+function callCompanion(op) {
+  return new Promise((resolve) => {
+    let port;
+    try { port = chrome.runtime.connectNative(NATIVE_HOST); } catch (error) { resolve({ type: "error", message: error.message }); return; }
+    const requestId = crypto.randomUUID();
+    const timeout = setTimeout(() => { try { port.disconnect(); } catch {} resolve({ type: "error", message: "The local companion did not respond." }); }, 10000);
+    port.onMessage.addListener((message) => {
+      if (message?.requestId !== requestId) return;
+      clearTimeout(timeout); try { port.disconnect(); } catch {} resolve(message);
+    });
+    port.onDisconnect.addListener(() => {
+      if (!chrome.runtime.lastError) return;
+      clearTimeout(timeout); resolve({ type: "error", message: chrome.runtime.lastError.message });
+    });
+    port.postMessage({ op, requestId });
+  });
+}
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // Only this extension's popup may start or manage local authentication.
+  if (sender.id !== chrome.runtime.id || !sender.url?.startsWith(chrome.runtime.getURL(""))) return;
+  const op = message?.type === "chatgpt.status" ? "status.get" : message?.type === "chatgpt.connect" ? "auth.start" : message?.type === "chatgpt.signout" ? "auth.signOut" : null;
+  if (!op) return;
+  callCompanion(op).then(sendResponse);
+  return true;
+});
 
 function buildMockAnswer(query) {
   return `This is a mock AI answer for "${query}". It is streamed through the Better AI Mode background service worker.`;
