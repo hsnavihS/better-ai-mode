@@ -3,8 +3,13 @@
   "name": "Better AI Mode",
   "version": "0.1.0",
   "description": "Adds a custom AI answer card to Google Search results.",
+  "permissions": ["nativeMessaging"],
   "background": {
     "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Better AI Mode",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
