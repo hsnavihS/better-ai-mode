@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "Better AI Mode",
   "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx5AH5Vq5O2NYFZsvg+Cr8dvqDUhFqyT6fBUCkws2TgRlMGt2a/jFsAuYo5qjctHcY1FLJTmVE7MeocFDtaXohtmnYwNQgOs4R6rYqmI2owvTKlKqsLIioVRyop0+WHPpPHe7PPPXcoX7Cu3DZTPTVxwV6ALqZZ2MHyWso6kzbR3NaY/QdeNrF5H7B8qhJsKbO/90PwFaFVbHCrnelIMEg3HY0kSGcDmhBeeQiQjte/G8bCA8k0lRr0nHH+CBkchWnjxLNqs/c93nZ/nMlXsNtLWosvtNJEUEvw2dGtu0H5VTrjXngjz+0WzO08/HsE9MO/7fo4vqQQfoQwhpMjS1rQIDAQAB",
   "description": "Adds a custom AI answer card to Google Search results.",
   "permissions": ["nativeMessaging"],
   "background": {

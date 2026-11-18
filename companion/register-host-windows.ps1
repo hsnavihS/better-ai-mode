@@ -1,7 +1,8 @@
 param(
   [Parameter(Mandatory = $true)][string]$ExtensionId,
-  [string]$InstallPath = $PSScriptRoot
+  [string]$InstallPath
 )
+$InstallPath = if ([string]::IsNullOrWhiteSpace($InstallPath)) { $PSScriptRoot } else { $InstallPath }
 $resolved = (Resolve-Path -LiteralPath $InstallPath).Path
 $hostName = 'com.better_ai_mode.auth'
 $manifestPath = Join-Path $resolved 'native-host-manifest.json'
